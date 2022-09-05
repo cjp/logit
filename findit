@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if [[ -z "${LOGIT_DIR}" ]]; then
+    printf "Error: LOGIT_DIR not set.\n"
+    exit 1;
+fi
+
+commitid=$@
+if [[ -z "$commitid" ]]; then
+    printf "Usage:\n\n$ $0 <commitid>\n"
+    exit 1;
+fi
+
+cd "${LOGIT_DIR}"
+git pull >/dev/null 2>&1
+git log -n 1 "${commitid}" | cat
+

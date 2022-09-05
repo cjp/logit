@@ -22,13 +22,34 @@ printf "export LOGIT_DIR='~/log'\n" >> ~/.bashrc
 
 ```
 $ logit foo
+[trunk abcdefg] foo
+$
 ```
 
 ### STDIN
 
 ```
 $ logit
+Enter text, end with Ctrl-D.
+Here's an example longer log entry.
+
+This is a test.
+^D
+[trunk 1234567] Here's an example longer log entry.
+$
 ```
 
+### searching
 
+```
+$ findit 1234
+
+commit 1234567890abcdef1234567890abcdef12345678
+Author: J Doe <jdoe@example.com>
+Date:   Mon Sep 1 10:00:00 2022 -0000
+
+    Here's an example longer log entry.
+
+    This is a test.
+```
 
