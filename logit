@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if [[ -z "${LOGIT_DIR}" ]]; then
+    printf "Error: LOGIT_DIR not set.\n"
+    exit 1;
+fi
+
+text=$@
+if [[ -z "$text" ]]; then
+    printf "Enter text, end with Ctrl-D.\n"
+    text=$(cat /dev/stdin)
+fi
+
+cd "${LOGIT_DIR}"
+printf "${text}" | git commit --allow-empty --cleanup=verbatim -F -
+(git pull; git push) >/dev/null 2>&1
